@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "pandas-render"
+version = "0.1.0"
+description = ""
+authors = ["Darius Morawiec <nok@users.noreply.github.com>"]
+license = "BSD 3"
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+pandas = "^1.0.0"
+jupyterlab = "^1.2.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+yapf = "^0.31.0"
+pytest-cov = "^3.0.0"
+
+[tool.coverage.run]
+source = ["pandas_render"]
+
+[tool.coverage]
+skip_empty = true
+
+[tool.yapf]
+based_on_style = "yapf"
+indent_width = 4
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
