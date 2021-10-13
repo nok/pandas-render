@@ -5,7 +5,10 @@
 ### Environment
 
 ```bash
-conda env create -n pandas-render -f environment.yml 
-conda run -n pandas-render poetry env use $(which python)
+CFLAGS=-Wno-implicit-function-declaration pyenv install 3.6.2
+pyenv global system
+pyenv local 3.6.2
+poetry config virtualenvs.in-project true
+poetry env use 3.6.2
 poetry install
 ```

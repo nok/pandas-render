@@ -6,7 +6,7 @@ authors = ["Darius Morawiec <nok@users.noreply.github.com>"]
 license = "BSD 3"
 
 [tool.poetry.dependencies]
-python = "^3.6.1"
+python = "^3.6.2"
 pandas = "^1.0.0"
 jupyterlab = "^1.2.6"
 
