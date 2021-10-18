@@ -2,8 +2,8 @@ from typing import Union
 
 from .Element import Element
 
-from ..zoo import Image
-from ..zoo import Link
+from ..elements import Image
+from ..elements import Link
 
 elements = dict(image=Image, link=Link)
 
