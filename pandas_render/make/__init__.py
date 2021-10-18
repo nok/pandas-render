@@ -1,9 +1,10 @@
 from typing import Union
 
-from .Element import Element
+from pandas_render.make.Element import Element
+from pandas_render.make.Template import Template
 
-from ..elements import Image
-from ..elements import Link
+from pandas_render.elements import Image
+from pandas_render.elements import Link
 
 elements = dict(image=Image, link=Link)
 
