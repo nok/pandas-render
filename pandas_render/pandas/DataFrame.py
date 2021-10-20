@@ -51,7 +51,5 @@ def render(self: pd.DataFrame, columns: Dict[str, Union[str, Element, Template]]
     </table>
     '''.strip()
 
-    return HTML(JinjaTemplate(scaffold).render(dict(
-        columns=list(self.columns),
-        rows=rendered_rows)
-    ))
+    return HTML(
+        JinjaTemplate(scaffold).render(dict(columns=list(self.columns), rows=rendered_rows)))

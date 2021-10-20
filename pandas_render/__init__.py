@@ -26,9 +26,8 @@ def init(backend: Optional[str] = None):
                 }}
             }};
             loadScriptSync("{src}", {scope});
-        """.format(**dict(
-            src='https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js',
-            scope='window.Alpine')))
+        """.format(
+            **dict(src='https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js', scope='window.Alpine')))
 
 
 __version__ = '0.1.0'

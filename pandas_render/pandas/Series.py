@@ -34,6 +34,4 @@ def render(self: pd.Series, template: Union[str, Element], width: int = 1):
     </table>
     """.strip()
 
-    return HTML(JinjaTemplate(scaffold).render(dict(
-        rows=rows
-    )))
+    return HTML(JinjaTemplate(scaffold).render(dict(rows=rows)))
