@@ -7,6 +7,6 @@ class Link(Element):
 
     def __init__(self,
                  attribs: Dict[str, str] = {},
-                 text: Optional[str] = '{content}'):
-        attribs.update(dict(href='{content}'))
+                 text: Optional[str] = '{{ content }}'):
+        attribs.update(dict(href='{{ content }}'))
         super().__init__(tag='a', attribs=attribs, text=text)

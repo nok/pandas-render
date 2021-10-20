@@ -1,7 +1,0 @@
-name: pandas-render
-channels:
-  - conda-forge
-  - defaults
-dependencies:
-  - pip=21.3
-  - python=3.6.1
