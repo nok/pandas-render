@@ -8,17 +8,32 @@ from pandas_render.make.Element import Element
 from pandas_render.make import extract
 
 
-def render(self: pd.Series, template: Union[str, Element], size: int = 1):
+def _chunk(sequence, n: int):
+    for i in range(0, len(sequence), n):
+        yield sequence[i:i + n]
+
+
+def render(self: pd.Series, template: Union[str, Element], width: int = 1):
+
+    # Gather and render data:
     template = JinjaTemplate(extract(template))
     cells = [template.render(dict(content=cell)) for cell in self]
+    rows = list(_chunk(cells, n=max(1, width)))
 
-    def _chunks(elements, n: int):
-        for i in range(0, len(elements), n):
-            yield elements[i:i + n]
+    scaffold = """
+    <table>
+        {% for row in rows %}
+            <tr>
+                {% for cell in row %}
+                    <td>
+                        {{ cell }}
+                    </td>                  
+                {% endfor %}
+            </tr>            
+        {% endfor %}
+    </table>
+    """.strip()
 
-    rows = [f'<td>{cell}</td>' for cell in cells]
-    rows = list(_chunks(rows, max(1, size)))
-    cols = ['<tr>{}</tr>'.format(''.join(row)) for row in rows]
-    html = '<table>{}</table>'.format(''.join(cols))
-
-    return HTML(html)
+    return HTML(JinjaTemplate(scaffold).render(dict(
+        rows=rows
+    )))
