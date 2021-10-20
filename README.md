@@ -1,15 +1,11 @@
 # pandas-render
 
-## Development
-
-### Environment
+## Installation
 
 ```bash
-CFLAGS=-Wno-implicit-function-declaration pyenv install 3.6.2
-pyenv global system
-pyenv local 3.6.2
-poetry config virtualenvs.in-project true
-poetry env use 3.6.2
-poetry install
-poetry run python -m ipykernel install --name pandas-render
+pip install pandas-render
 ```
+
+## License
+
+This package is Open Source Software released under the [BSD-3-Clause](blob/main/LICENSE) license.
