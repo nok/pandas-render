@@ -5,31 +5,32 @@ from IPython.display import HTML
 from jinja2 import Template as JinjaTemplate
 
 from pandas_render.make.Element import Element
+from pandas_render.make.Template import Template
 from pandas_render.make import extract
 
 
-def render(self: pd.DataFrame, columns: Dict[str, Union[str, Element]]):
+def render(self: pd.DataFrame, columns: Dict[str, Union[str, Element, Template]]):
 
     # Load templates:
-    templates = {}
+    jinja_templates = {}
     for column, template in columns.items():
         if column in list(self.columns):
-            templates[column] = JinjaTemplate(extract(template))
+            jinja_templates[column] = JinjaTemplate(extract(template))
 
-    # Update entries:
-    outs = []
+    # Render data:
+    rendered_rows = []
     for row in self.to_dict(orient='records'):
-        entry = {}
+        rendered_row = {}
         for column in row.keys():
-            if column in templates.keys():
+            if column in jinja_templates.keys():
                 values = {'content': row[column]}
                 values.update(row)
-                entry[column] = templates.get(column).render(values)
+                rendered_row[column] = jinja_templates.get(column).render(values)
             else:
-                entry[column] = row.get(column)
-        outs.append(entry)
+                rendered_row[column] = row.get(column)
+        rendered_rows.append(rendered_row)
 
-    html = '''
+    scaffold = '''
     <table class="dataframe" border="1">
         <thead>
             <tr>
@@ -48,5 +49,9 @@ def render(self: pd.DataFrame, columns: Dict[str, Union[str, Element]]):
             {% endfor %}
         </tbody>
     </table>
-    '''
-    return HTML(JinjaTemplate(html).render(dict(columns=list(self.columns), rows=outs)))
+    '''.strip()
+
+    return HTML(JinjaTemplate(scaffold).render(dict(
+        columns=list(self.columns),
+        rows=rendered_rows)
+    ))
