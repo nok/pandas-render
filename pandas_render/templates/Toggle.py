@@ -5,7 +5,7 @@ class Toggle(Template):
 
     def __init__(self,
                  content: str,
-                 is_open=False,
+                 is_open: bool = False,
                  show: str = 'Show',
                  hide: str = 'Hide'):
         template = """
