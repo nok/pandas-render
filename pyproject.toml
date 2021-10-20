@@ -2,8 +2,11 @@
 name = "pandas-render"
 version = "0.1.0"
 description = ""
+repository = "https://github.com/nok/pandas-render"
 authors = ["Darius Morawiec <nok@users.noreply.github.com>"]
-license = "BSD 3"
+license = "BSD-3-Clause"
+readme = "README.md"
+classifiers = ["Topic :: Scientific/Engineering :: Visualization"]
 
 [tool.poetry.dependencies]
 python = "^3.6.2"
