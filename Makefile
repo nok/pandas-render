@@ -9,3 +9,6 @@ yapf:
 
 pytest:
 		$(ACTIVATE_CONDA_ENV) poetry run pytest --cov
+
+setup::
+		resources/scripts/make_setup.sh
