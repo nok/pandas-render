@@ -18,6 +18,7 @@ Jinja2 = "^3.0.0"
 pytest = "^6.2.5"
 yapf = "^0.31.0"
 pytest-cov = "^3.0.0"
+mypy = "^0.910"
 
 [tool.coverage.run]
 source = ["pandas_render"]
