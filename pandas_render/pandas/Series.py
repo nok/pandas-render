@@ -16,8 +16,8 @@ def _chunk(sequence, n: int):
 def render(self: pd.Series, template: Union[str, Element], width: int = 1):
 
     # Gather and render data:
-    template = JinjaTemplate(extract(template))
-    cells = [template.render(dict(content=cell)) for cell in self]
+    jinja_template = JinjaTemplate(extract(template))
+    cells = [jinja_template.render(dict(content=cell)) for cell in self]
     rows = list(_chunk(cells, n=max(1, width)))
 
     scaffold = """

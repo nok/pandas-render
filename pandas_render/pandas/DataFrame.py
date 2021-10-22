@@ -25,7 +25,11 @@ def render(self: pd.DataFrame, columns: Dict[str, Union[str, Element, Template]]
             if column in jinja_templates.keys():
                 values = {'content': row[column]}
                 values.update(row)
-                rendered_row[column] = jinja_templates.get(column).render(values)
+                jinja_template = jinja_templates.get(column)
+                if jinja_template and isinstance(jinja_template, JinjaTemplate):
+                    rendered_row[column] = jinja_template.render(values)
+                else:
+                    rendered_row[column] = row.get(column)
             else:
                 rendered_row[column] = row.get(column)
         rendered_rows.append(rendered_row)

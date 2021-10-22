@@ -5,16 +5,15 @@ import pandas as pd
 
 def init(backend: Optional[str] = None):
     if not hasattr(pd.Series, 'render'):
-        from pandas_render.pandas.Series import render
-        setattr(pd.Series, 'render', render)
+        from pandas_render.pandas.Series import render as _render_series
+        setattr(pd.Series, 'render', _render_series)
 
     if not hasattr(pd.DataFrame, 'render'):
-        from pandas_render.pandas.DataFrame import render
-        setattr(pd.DataFrame, 'render', render)
+        from pandas_render.pandas.DataFrame import render as _render_dataframe
+        setattr(pd.DataFrame, 'render', _render_dataframe)
 
     if backend and backend == 'alpine':
         from IPython.display import Javascript
-
         return Javascript("""
             var loadScriptSync = function(src, scope) {{
                 if (!scope) {{

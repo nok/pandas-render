@@ -12,8 +12,8 @@ elements = dict(image=Image, link=Link)
 def extract(template: Union[str, Element, Template, type]) -> str:
     if isinstance(template, str):
         if template in elements.keys():
-            template = elements.get(template)
-            template = template()
+            clazz = elements.get(template)
+            template = clazz()
             return template.render()
         return template
 
@@ -25,3 +25,5 @@ def extract(template: Union[str, Element, Template, type]) -> str:
         if issubclass(template, clazz):
             template = template()
             return template.render()
+
+    return str(template)
