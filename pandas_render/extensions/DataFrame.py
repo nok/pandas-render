@@ -28,10 +28,8 @@ def render_dataframe(self: pd.DataFrame,
                 values = {'content': row[column]}
                 values.update(row)
                 jinja_template = jinja_templates.get(column)
-                if jinja_template and isinstance(jinja_template, JinjaTemplate):
+                if jinja_template:
                     rendered_row[column] = jinja_template.render(values)
-                else:
-                    rendered_row[column] = row.get(column)
             else:
                 rendered_row[column] = row.get(column)
         rendered_rows.append(rendered_row)

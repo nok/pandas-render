@@ -16,13 +16,13 @@ def _chunk(sequence, n: int):
 
 def render_series(self: pd.Series,
                   template: Union[str, Element],
-                  width: int = 1,
+                  n: int = 1,
                   return_str: bool = False) -> Union[str, HTML]:
 
     # Gather and render data:
     jinja_template = JinjaTemplate(render(template))
     cells = [jinja_template.render(dict(content=cell)) for cell in self]
-    rows = list(_chunk(cells, n=max(1, width)))
+    rows = list(_chunk(cells, n=max(1, n)))
 
     template = cleandoc("""
     <table>
