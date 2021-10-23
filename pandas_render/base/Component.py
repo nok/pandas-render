@@ -1,4 +1,4 @@
-class Template:
+class Component:
 
     def __init__(self, template: str):
         self.template = template

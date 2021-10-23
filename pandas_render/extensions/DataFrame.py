@@ -5,20 +5,19 @@ import pandas as pd  # noqa
 from IPython.display import HTML  # noqa
 from jinja2 import Template as JinjaTemplate
 
-from pandas_render.make.Element import Element
-from pandas_render.make.Template import Template
-from pandas_render.make import extract
+from pandas_render.base import Component, Element
+from pandas_render.extensions import render
 
 
-def render(self: pd.DataFrame,
-           columns: Dict[str, Union[str, Element, Template]],
-           return_str: bool = False) -> Union[str, HTML]:
+def render_dataframe(self: pd.DataFrame,
+                     columns: Dict[str, Union[str, Element, Component]],
+                     return_str: bool = False) -> Union[str, HTML]:
 
     # Load templates:
     jinja_templates = {}
     for column, template in columns.items():
         if column in list(self.columns):
-            jinja_templates[column] = JinjaTemplate(extract(template))
+            jinja_templates[column] = JinjaTemplate(render(template))
 
     # Render data:
     rendered_rows = []

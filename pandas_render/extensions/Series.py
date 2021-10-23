@@ -5,8 +5,8 @@ import pandas as pd  # noqa
 from IPython.display import HTML  # noqa
 from jinja2 import Template as JinjaTemplate
 
-from pandas_render.make.Element import Element
-from pandas_render.make import extract
+from pandas_render.base.Element import Element
+from pandas_render.extensions import render
 
 
 def _chunk(sequence, n: int):
@@ -14,13 +14,13 @@ def _chunk(sequence, n: int):
         yield sequence[i:i + n]
 
 
-def render(self: pd.Series,
-           template: Union[str, Element],
-           width: int = 1,
-           return_str: bool = False) -> Union[str, HTML]:
+def render_series(self: pd.Series,
+                  template: Union[str, Element],
+                  width: int = 1,
+                  return_str: bool = False) -> Union[str, HTML]:
 
     # Gather and render data:
-    jinja_template = JinjaTemplate(extract(template))
+    jinja_template = JinjaTemplate(render(template))
     cells = [jinja_template.render(dict(content=cell)) for cell in self]
     rows = list(_chunk(cells, n=max(1, width)))
 

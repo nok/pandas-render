@@ -1,6 +1,6 @@
 from typing import Dict, Optional
 
-from pandas_render.make.Element import Element
+from pandas_render.base import Element
 
 
 class Link(Element):

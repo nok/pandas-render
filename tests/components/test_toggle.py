@@ -1,4 +1,4 @@
-from pandas_render.templates import Toggle
+from pandas_render.components import Toggle
 
 
 def test_element_toggle():
