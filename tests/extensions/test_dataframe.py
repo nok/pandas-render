@@ -20,13 +20,14 @@ def test_content(df: pd.DataFrame):
         name='{{ content|upper }}',
         foobar='{{ content }}',
     ), return_str=True)
-
-    assert \
-        'ANNA' in table and \
-        'BOB' in table and \
-        'CHRISTIAN' in table
-
+    for name in ['ANNA', 'BOB', 'CHRISTIAN']:
+        assert name in table
     assert 'foobar' not in table
+
+    table = df.render(dict(
+        age='{{ content }}',
+    ), filter_columns=True, return_str=True)
+    assert 'Anna' not in table
 
     table = df.render(dict(
         name='{{ content|upper }}',
