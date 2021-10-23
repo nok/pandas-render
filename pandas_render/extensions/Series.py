@@ -1,4 +1,5 @@
 from typing import Union
+from inspect import cleandoc
 
 import pandas as pd  # noqa
 from IPython.display import HTML  # noqa
@@ -20,18 +21,16 @@ def render(self: pd.Series, template: Union[str, Element], width: int = 1):
     cells = [jinja_template.render(dict(content=cell)) for cell in self]
     rows = list(_chunk(cells, n=max(1, width)))
 
-    scaffold = """
+    scaffold = cleandoc("""
     <table>
         {% for row in rows %}
-            <tr>
-                {% for cell in row %}
-                    <td>
-                        {{ cell }}
-                    </td>                  
-                {% endfor %}
-            </tr>            
+        <tr>
+            {% for cell in row %}
+            <td>{{ cell }}</td>
+            {% endfor %}
+        </tr>
         {% endfor %}
     </table>
-    """.strip()
+    """)
 
     return HTML(JinjaTemplate(scaffold).render(dict(rows=rows)))

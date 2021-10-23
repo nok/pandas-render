@@ -1,4 +1,5 @@
 from typing import Union, Dict
+from inspect import cleandoc
 
 import pandas as pd  # noqa
 from IPython.display import HTML  # noqa
@@ -34,26 +35,26 @@ def render(self: pd.DataFrame, columns: Dict[str, Union[str, Element, Template]]
                 rendered_row[column] = row.get(column)
         rendered_rows.append(rendered_row)
 
-    scaffold = '''
+    scaffold = cleandoc('''
     <table class="dataframe" border="1">
         <thead>
             <tr>
-                {% for column in columns %}
-                    <th>{{ column }}</th>
-                {% endfor %}
+            {% for column in columns %}
+                <th>{{ column }}</th>
+            {% endfor %}
             </tr>
         </thead>
         <tbody>
-            {% for row in rows %}
-                <tr>
-                    {% for column in columns %}
-                        <td>{{ row[column] }}</td>
-                    {% endfor %}
-                </tr>
+        {% for row in rows %}
+            <tr>
+            {% for column in columns %}
+                <td>{{ row[column] }}</td>
             {% endfor %}
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
-    '''.strip()
+    ''')
 
     return HTML(
         JinjaTemplate(scaffold).render(dict(columns=list(self.columns), rows=rendered_rows)))
