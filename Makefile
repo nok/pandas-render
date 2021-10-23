@@ -11,7 +11,7 @@ yapf:
 		$(ACTIVATE_CONDA_ENV) poetry run yapf -i -r pandas_render
 
 pytest:
-		$(ACTIVATE_CONDA_ENV) poetry run pytest --cov
+		$(ACTIVATE_CONDA_ENV) poetry run pytest --cov-report term --cov-report html --cov
 
 setup::
 		resources/scripts/make_setup.sh
