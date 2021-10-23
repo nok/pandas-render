@@ -14,14 +14,17 @@ def _chunk(sequence, n: int):
         yield sequence[i:i + n]
 
 
-def render(self: pd.Series, template: Union[str, Element], width: int = 1):
+def render(self: pd.Series,
+           template: Union[str, Element],
+           width: int = 1,
+           return_str: bool = False) -> Union[str, HTML]:
 
     # Gather and render data:
     jinja_template = JinjaTemplate(extract(template))
     cells = [jinja_template.render(dict(content=cell)) for cell in self]
     rows = list(_chunk(cells, n=max(1, width)))
 
-    scaffold = cleandoc("""
+    template = cleandoc("""
     <table>
         {% for row in rows %}
         <tr>
@@ -33,4 +36,9 @@ def render(self: pd.Series, template: Union[str, Element], width: int = 1):
     </table>
     """)
 
-    return HTML(JinjaTemplate(scaffold).render(dict(rows=rows)))
+    output = JinjaTemplate(template).render(dict(rows=rows))
+
+    if return_str:
+        return output
+
+    return HTML(output)

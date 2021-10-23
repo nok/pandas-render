@@ -10,7 +10,9 @@ from pandas_render.make.Template import Template
 from pandas_render.make import extract
 
 
-def render(self: pd.DataFrame, columns: Dict[str, Union[str, Element, Template]]):
+def render(self: pd.DataFrame,
+           columns: Dict[str, Union[str, Element, Template]],
+           return_str: bool = False) -> Union[str, HTML]:
 
     # Load templates:
     jinja_templates = {}
@@ -35,7 +37,7 @@ def render(self: pd.DataFrame, columns: Dict[str, Union[str, Element, Template]]
                 rendered_row[column] = row.get(column)
         rendered_rows.append(rendered_row)
 
-    scaffold = cleandoc('''
+    template = cleandoc('''
     <table class="dataframe" border="1">
         <thead>
             <tr>
@@ -56,5 +58,9 @@ def render(self: pd.DataFrame, columns: Dict[str, Union[str, Element, Template]]
     </table>
     ''')
 
-    return HTML(
-        JinjaTemplate(scaffold).render(dict(columns=list(self.columns), rows=rendered_rows)))
+    output = JinjaTemplate(template).render(dict(columns=list(self.columns), rows=rendered_rows))
+
+    if return_str:
+        return output
+
+    return HTML(output)
