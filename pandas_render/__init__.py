@@ -1,16 +1,16 @@
 from typing import Optional
 
-import pandas as pd
+import pandas  # noqa
 
 
 def init(backend: Optional[str] = None):
-    if not hasattr(pd.Series, 'render'):
-        from pandas_render.pandas.Series import render as _render_series
-        setattr(pd.Series, 'render', _render_series)
+    if not hasattr(pandas.Series, 'render'):
+        from pandas_render.extensions.Series import render as _render_series
+        setattr(pandas.Series, 'render', _render_series)
 
-    if not hasattr(pd.DataFrame, 'render'):
-        from pandas_render.pandas.DataFrame import render as _render_dataframe
-        setattr(pd.DataFrame, 'render', _render_dataframe)
+    if not hasattr(pandas.DataFrame, 'render'):
+        from pandas_render.extensions.DataFrame import render as _render_dataframe
+        setattr(pandas.DataFrame, 'render', _render_dataframe)
 
     if backend and backend == 'alpine':
         from IPython.display import Javascript
@@ -30,3 +30,5 @@ def init(backend: Optional[str] = None):
 
 
 __version__ = '0.1.0'
+
+init()  # default initialization of the extension

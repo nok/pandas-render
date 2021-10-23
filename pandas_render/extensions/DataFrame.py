@@ -1,7 +1,7 @@
 from typing import Union, Dict
 
-import pandas as pd
-from IPython.display import HTML
+import pandas as pd  # noqa
+from IPython.display import HTML  # noqa
 from jinja2 import Template as JinjaTemplate
 
 from pandas_render.make.Element import Element
