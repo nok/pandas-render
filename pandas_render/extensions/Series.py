@@ -26,13 +26,13 @@ def render_series(self: pd.Series,
 
     template = cleandoc("""
     <table>
-        {% for row in rows %}
+        {%- for row in rows -%}
         <tr>
-            {% for cell in row %}
+            {%- for cell in row -%}
             <td>{{ cell }}</td>
-            {% endfor %}
+            {%- endfor -%}
         </tr>
-        {% endfor %}
+        {%- endfor -%}
     </table>
     """)
 

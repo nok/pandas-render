@@ -41,19 +41,19 @@ def render_dataframe(self: pd.DataFrame,
     <table class="dataframe" border="1">
         <thead>
             <tr>
-            {% for column in columns %}
+            {%- for column in columns -%}
                 <th>{{ column }}</th>
-            {% endfor %}
+            {%- endfor -%}
             </tr>
         </thead>
         <tbody>
-        {% for row in rows %}
+        {%- for row in rows -%}
             <tr>
-            {% for column in columns %}
+            {%- for column in columns -%}
                 <td>{{ row[column] }}</td>
-            {% endfor %}
+            {%- endfor -%}
             </tr>
-        {% endfor %}
+        {%- endfor -%}
         </tbody>
     </table>
     ''')

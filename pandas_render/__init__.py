@@ -51,9 +51,9 @@ def _handle_libraries(
                 document.getElementsByTagName('head')[0].appendChild(script);
             }
         };
-        {% for library in libraries %}
+        {%- for library in libraries -%}
         loadScriptSync("{{ library.src }}", {{ library.scope }});
-        {% endfor %}
+        {%- endfor -%}
     """))
 
     output = ''
