@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pandas-render"
-version = "0.1.0"
+version = "0.2.1"
 description = ""
 repository = "https://github.com/nok/pandas-render"
 authors = ["Darius Morawiec <nok@users.noreply.github.com>"]
@@ -9,10 +9,10 @@ readme = "README.md"
 classifiers = ["Topic :: Scientific/Engineering :: Visualization"]
 
 [tool.poetry.dependencies]
-python = "^3.6.2"
-pandas = "^1.0.0"
-jupyterlab = "^1.2.6"
-Jinja2 = "^3.0.0"
+python = ">=3.6.2"
+pandas = ">=1.0.0"
+jupyterlab = ">=1.2.6"
+Jinja2 = ">=3.0.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"

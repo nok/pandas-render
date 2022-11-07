@@ -75,4 +75,4 @@ def init(libraries: Optional[Union[str, Tuple[str, str], List[Union[str, Tuple[s
 
 init()  # default initialization without any additional libraries
 
-__version__ = '0.1.0'
+__version__ = '0.2.1'
