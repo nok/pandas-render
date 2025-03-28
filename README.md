@@ -1,5 +1,7 @@
 # pandas-render
 
+A pandas extension for rendering DataFrames and Series.
+
 ## Installation
 
 ```bash

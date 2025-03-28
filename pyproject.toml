@@ -1,37 +1,41 @@
-[tool.poetry]
+[project]
 name = "pandas-render"
 version = "0.2.1"
-description = ""
-repository = "https://github.com/nok/pandas-render"
-authors = ["Darius Morawiec <nok@users.noreply.github.com>"]
-license = "BSD-3-Clause"
+description = "A pandas extension for rendering DataFrames"
 readme = "README.md"
-classifiers = ["Topic :: Scientific/Engineering :: Visualization"]
+authors = [
+    { name = "Darius Morawiec", email = "nok@users.noreply.github.com" }
+]
+requires-python = ">=3.9"
+dependencies = [
+    "ipython>=7.11.1",
+    "jinja2>=3.0.0",
+    "pandas>=1.0.0",
+]
+license = "BSD-3-Clause"
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Visualization"
+]
 
-[tool.poetry.dependencies]
-python = ">=3.6.2"
-pandas = ">=1.0.0"
-jupyterlab = ">=1.2.6"
-Jinja2 = ">=3.0.0"
+[project.urls]
+Source = "https://github.com/nok/pandas-render"
+Issues = "https://github.com/nok/pandas-render/issues"
 
-[tool.poetry.dev-dependencies]
-pytest = "^6.2.5"
-yapf = "^0.31.0"
-pytest-cov = "^3.0.0"
-mypy = "^0.910"
-pytest-sugar = "^0.9.4"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "pytest-cov>=6.0.0",
+    "pytest-sugar>=1.0.0",
+]
 
 [tool.coverage.run]
 source = ["pandas_render"]
 
 [tool.coverage]
 skip_empty = true
-
-[tool.yapf]
-based_on_style = "yapf"
-indent_width = 4
-column_limit = 100
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
