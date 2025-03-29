@@ -21,22 +21,18 @@ def test_initialization_with_library():
     output = init("alpine")
     assert isinstance(output, Javascript)
 
-    alpine = "https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js"
+    alpinejs_output = 'loadScriptSync("alpinejs", "https://unpkg.com/alpinejs");'
 
-    output = init("alpine", return_str=True)
+    output = init("alpinejs", return_str=True)
     assert isinstance(output, str)
-    assert f'loadScriptSync("{alpine}", window.Alpine);' in output
+    assert alpinejs_output in output
 
-    output = init((alpine, "window.Alpine"), return_str=True)
-    assert f'loadScriptSync("{alpine}", window.Alpine);' in output
+    output = init(("alpinejs", "https://unpkg.com/alpinejs"), return_str=True)
+    assert alpinejs_output in output
 
-    output = init([(alpine, "window.Alpine")], return_str=True)
-    assert f'loadScriptSync("{alpine}", window.Alpine);' in output
+    output = init([("alpinejs", "https://unpkg.com/alpinejs")], return_str=True)
+    assert alpinejs_output in output
 
-    output = init(alpine, return_str=True)
-    assert f'loadScriptSync("{alpine}", null);' in output
-
-    output = init(["alpine", ("a.js", "window.a"), "b.js"], return_str=True)
-    assert f'loadScriptSync("{alpine}", window.Alpine);' in output
-    assert 'loadScriptSync("a.js", window.a);' in output
-    assert 'loadScriptSync("b.js", null);' in output
+    output = init(["alpinejs", ("vuejs", "https://unpkg.com/vue")], return_str=True)
+    assert alpinejs_output in output
+    assert 'loadScriptSync("vuejs", "https://unpkg.com/vue")' in output
