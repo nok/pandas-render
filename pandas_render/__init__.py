@@ -22,47 +22,47 @@ def _handle_extensions():
 def _handle_libraries(
     libraries: Union[str, Tuple[str, str], List[Union[str, Tuple[str, str]]]],
 ) -> str:
-    Library = namedtuple("Library", "src scope")
-
     if isinstance(libraries, (str, tuple)):
         libraries = [libraries]
 
+    Library = namedtuple("Library", "name src")
     valid_libraries: List[Library] = []
-    if isinstance(libraries, list):
-        for library in libraries:
-            if isinstance(library, str):
-                if library == "alpine":
-                    library = Library(
-                        src="https://unpkg.com/alpinejs",
-                        scope="window.Alpine",
-                    )
-                else:
-                    library = Library(src=library, scope="null")
-            elif isinstance(library, tuple) and len(library) >= 2:
-                library = Library(src=library[0], scope=library[1])
 
-            if isinstance(library, Library):
+    for library in libraries:
+        if isinstance(library, str):
+            if library == "alpinejs":
+                library = Library(
+                    name="alpinejs",
+                    src="https://unpkg.com/alpinejs",
+                )
+                valid_libraries.append(library)
+        else:
+            if isinstance(library, tuple):
+                library = Library(name=library[0], src=library[1])
                 valid_libraries.append(library)
 
     template = JinjaTemplate(
         cleandoc("""
-        var loadScriptSync = function(src, scope) {
-            if (scope != null && !scope) {
-                var script = document.createElement('script');
-                script.src = src;
-                script.type = 'text/javascript';
-                script.async = false;
-                document.getElementsByTagName('head')[0].appendChild(script);
+        var loadScriptSync = function(name, src) {
+            if (document.querySelector('script[data-pandas-render-library="' + name + '"]')) {
+                return;
             }
+            var script = document.createElement('script');
+            script.src = src;
+            script.type = 'text/javascript';
+            script.async = false;
+            script.setAttribute("data-pandas-render-library", name);
+            document.getElementsByTagName('head')[0].appendChild(script);
         };
         {%- for library in libraries -%}
-        loadScriptSync("{{ library.src }}", {{ library.scope }});
+        loadScriptSync("{{ library.name }}", "{{ library.src }}");
         {%- endfor -%}
-    """)
+    """),
+        autoescape=False,
     )
 
     output = ""
-    if len(valid_libraries):
+    if len(valid_libraries) > 0:
         output = template.render(libraries=valid_libraries)
     return output
 
