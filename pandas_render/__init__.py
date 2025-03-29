@@ -33,7 +33,7 @@ def _handle_libraries(
             if isinstance(library, str):
                 if library == "alpine":
                     library = Library(
-                        src="https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js",
+                        src="https://unpkg.com/alpinejs",
                         scope="window.Alpine",
                     )
                 else:
