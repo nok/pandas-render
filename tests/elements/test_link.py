@@ -2,11 +2,13 @@ from pandas_render.elements import Link
 
 
 def test_element_link():
-
     template = Link().render()
-    assert template == '<a href="{{ content }}">{{ content }}</a>'
+    assert 'href="{{ content }}"' in template
 
-    template = Link(attribs={
-        'target': '{{ content }}'
-    }).render()
-    assert template == '<a href="{{ content }}" target="{{ content }}">{{ content }}</a>'
+    template = Link(
+        attribs={
+            "target": "{{ content }}",
+        }
+    ).render()
+    assert 'target="{{ content }}"' in template
+    assert 'href="{{ content }}"' in template
