@@ -2,11 +2,23 @@
 
 A pandas extension for rendering DataFrames and Series.
 
+
 ## Installation
 
 ```bash
 pip install pandas-render
 ```
+
+
+## Development
+
+We rely on [uv](https://docs.astral.sh/uv/) for package management. Ensure uv is installed before proceeding.
+
+```bash
+make setup
+make test
+```
+
 
 ## License
 
