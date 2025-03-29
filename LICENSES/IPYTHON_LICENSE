@@ -1,23 +1,29 @@
-https://raw.githubusercontent.com/jupyterlab/jupyterlab/master/LICENSE
+https://raw.githubusercontent.com/ipython/ipython/refs/heads/main/LICENSE
 
 -------------------------------------------------------------------------------
 
-Copyright (c) 2015-2021 Project Jupyter Contributors
+BSD 3-Clause License
+
+- Copyright (c) 2008-Present, IPython Development Team
+- Copyright (c) 2001-2007, Fernando Perez <fernando.perez@colorado.edu>
+- Copyright (c) 2001, Janko Hauser <jhauser@zscout.de>
+- Copyright (c) 2001, Nathaniel Gray <n8gray@caltech.edu>
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
 
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
 
-3. Neither the name of the copyright holder nor the names of its
-   contributors may be used to endorse or promote products derived from
-   this software without specific prior written permission.
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
@@ -29,9 +35,3 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-Semver File License
-===================
-
-The semver.py file is from https://github.com/podhmo/python-semver
-which is licensed under the "MIT" license.  See the semver.py file for details.
