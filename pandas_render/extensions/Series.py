@@ -1,8 +1,8 @@
 from typing import Union
 from inspect import cleandoc
 
-import pandas as pd  # noqa
-from IPython.display import HTML  # noqa
+import pandas as pd
+from IPython.display import HTML
 from jinja2 import Template as JinjaTemplate
 
 from pandas_render.base.Element import Element
@@ -11,14 +11,15 @@ from pandas_render.extensions import render
 
 def _chunk(sequence, n: int):
     for i in range(0, len(sequence), n):
-        yield sequence[i:i + n]
+        yield sequence[i : i + n]
 
 
-def render_series(self: pd.Series,
-                  template: Union[str, Element],
-                  n: int = 1,
-                  return_str: bool = False) -> Union[str, HTML]:
-
+def render_series(
+    self: pd.Series,
+    template: Union[str, Element],
+    n: int = 1,
+    return_str: bool = False,
+) -> Union[str, HTML]:
     # Gather and render data:
     jinja_template = JinjaTemplate(render(template))
     cells = [jinja_template.render(dict(content=cell)) for cell in self]

@@ -8,18 +8,21 @@ import pandas  # noqa
 
 
 def _handle_extensions():
-    if not hasattr(pandas.Series, 'render'):
+    if not hasattr(pandas.Series, "render"):
         from pandas_render.extensions.Series import render_series
-        setattr(pandas.Series, 'render', render_series)
 
-    if not hasattr(pandas.DataFrame, 'render'):
+        setattr(pandas.Series, "render", render_series)
+
+    if not hasattr(pandas.DataFrame, "render"):
         from pandas_render.extensions.DataFrame import render_dataframe
-        setattr(pandas.DataFrame, 'render', render_dataframe)
+
+        setattr(pandas.DataFrame, "render", render_dataframe)
 
 
 def _handle_libraries(
-        libraries: Union[str, Tuple[str, str], List[Union[str, Tuple[str, str]]]]) -> str:
-    Library = namedtuple('Library', 'src scope')
+    libraries: Union[str, Tuple[str, str], List[Union[str, Tuple[str, str]]]],
+) -> str:
+    Library = namedtuple("Library", "src scope")
 
     if isinstance(libraries, (str, tuple)):
         libraries = [libraries]
@@ -28,12 +31,13 @@ def _handle_libraries(
     if isinstance(libraries, list):
         for library in libraries:
             if isinstance(library, str):
-                if library == 'alpine':
+                if library == "alpine":
                     library = Library(
-                        src='https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js',
-                        scope='window.Alpine')
+                        src="https://unpkg.com/alpinejs@3.4.2/dist/cdn.min.js",
+                        scope="window.Alpine",
+                    )
                 else:
-                    library = Library(src=library, scope='null')
+                    library = Library(src=library, scope="null")
             elif isinstance(library, tuple) and len(library) >= 2:
                 library = Library(src=library[0], scope=library[1])
 
@@ -54,16 +58,21 @@ def _handle_libraries(
         {%- for library in libraries -%}
         loadScriptSync("{{ library.src }}", {{ library.scope }});
         {%- endfor -%}
-    """))
+    """)
+    )
 
-    output = ''
+    output = ""
     if len(valid_libraries):
         output = template.render(libraries=valid_libraries)
     return output
 
 
-def init(libraries: Optional[Union[str, Tuple[str, str], List[Union[str, Tuple[str, str]]]]] = None,
-         return_str: bool = False) -> Optional[Union[str, Javascript]]:
+def init(
+    libraries: Optional[
+        Union[str, Tuple[str, str], List[Union[str, Tuple[str, str]]]]
+    ] = None,
+    return_str: bool = False,
+) -> Optional[Union[str, Javascript]]:
     _handle_extensions()
     if libraries:
         output = _handle_libraries(libraries)
@@ -75,4 +84,4 @@ def init(libraries: Optional[Union[str, Tuple[str, str], List[Union[str, Tuple[s
 
 init()  # default initialization without any additional libraries
 
-__version__ = '0.2.1'
+__version__ = "0.2.1"
