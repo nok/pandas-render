@@ -13,6 +13,7 @@ def render_dataframe(
     self: pd.DataFrame,
     columns: Dict[str, Union[str, Element, Component]],
     filter_columns: bool = False,
+    with_thead: bool = True,
     return_str: bool = False,
 ) -> Union[str, HTML]:
     visible_columns = list(columns.keys()) if filter_columns else list(self.columns)
@@ -41,6 +42,7 @@ def render_dataframe(
 
     template = cleandoc("""
     <table class="dataframe" border="1">
+        {%- if with_thead -%}
         <thead>
             <tr>
             {%- for column in columns -%}
@@ -48,6 +50,7 @@ def render_dataframe(
             {%- endfor -%}
             </tr>
         </thead>
+        {%- endif -%}
         <tbody>
         {%- for row in rows -%}
             <tr>
@@ -61,7 +64,11 @@ def render_dataframe(
     """)
 
     output = JinjaTemplate(template).render(
-        dict(columns=visible_columns, rows=rendered_rows)
+        dict(
+            columns=visible_columns,
+            rows=rendered_rows,
+            with_thead=with_thead,
+        )
     )
 
     if return_str:
