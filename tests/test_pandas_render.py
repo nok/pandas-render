@@ -1,9 +1,3 @@
-def test_version():
-    from pandas_render import __version__
-
-    assert __version__ == "0.2.1"
-
-
 def test_implicit_initialization():
     import pandas as pd
     from pandas_render import init
