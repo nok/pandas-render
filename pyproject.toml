@@ -1,6 +1,6 @@
 [project]
 name = "pandas-render"
-version = "0.2.1"
+dynamic = ["version"]
 description = "A pandas extension for rendering DataFrames"
 readme = "README.md"
 authors = [
@@ -20,18 +20,15 @@ classifiers = [
 ]
 
 [project.urls]
-Source = "https://github.com/nok/pandas-render"
+Repository = "https://github.com/nok/pandas-render"
 Issues = "https://github.com/nok/pandas-render/issues"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
     "pytest>=8.3.5",
     "pytest-cov>=6.0.0",
     "pytest-sugar>=1.0.0",
+    "pytest-xdist>=3.6.1",
 ]
 examples = [
     "jupyterlab>=4.3.6",
@@ -42,3 +39,21 @@ source = ["pandas_render"]
 
 [tool.coverage]
 skip_empty = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+exclude = [
+  "/.*",
+  "/examples",
+  "/tests",
+  "Makefile",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["pandas_render"]
+
+[tool.hatch.version]
+path = "pandas_render/__init__.py"
