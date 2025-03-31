@@ -21,14 +21,19 @@ jobs:
           "3.13"
         ]
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: astral-sh/setup-uv@v5
         with:
           python-version: ${{ matrix.python-version }}
           enable-cache: true
           cache-dependency-glob: "uv.lock"
+      
       - name: Install dependencies
         run: uv sync --dev
+      
       - name: Run tests
         run: |
           uv run pytest \
