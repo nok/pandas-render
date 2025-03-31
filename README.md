@@ -12,6 +12,8 @@ pip install pandas-render
 
 We rely on [uv](https://docs.astral.sh/uv/) for package management. Ensure uv is installed before proceeding.
 
+In addition we follow the [Conventional Commits](https://www.conventionalcommits.org/) standard to maintain a clear and organized commit history.
+
 ### Environment
 
 To create a new local environment in `./.venv`, run:
