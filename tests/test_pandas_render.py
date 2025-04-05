@@ -1,5 +1,6 @@
 def test_implicit_initialization():
     import pandas as pd
+
     from pandas_render import init
 
     init()
@@ -10,6 +11,7 @@ def test_implicit_initialization():
 
 def test_initialization_with_library():
     from IPython.display import Javascript
+
     from pandas_render import init
 
     output = init("alpine")

@@ -1,6 +1,6 @@
-from pandas_render.extensions import render
-from pandas_render.elements import Image, Link
 from pandas_render.components import Toggle
+from pandas_render.elements import Image, Link
+from pandas_render.extensions import render
 
 
 def test_and_compare_renderings():

@@ -1,5 +1,5 @@
-from typing import Union, Dict
 from inspect import cleandoc
+from typing import Dict, Union
 
 import pandas as pd
 from IPython.display import HTML

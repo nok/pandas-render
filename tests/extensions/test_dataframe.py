@@ -1,9 +1,8 @@
-import pytest
-
 import pandas as pd
-from pandas_render import init
-
+import pytest
 from IPython.display import HTML
+
+from pandas_render import init
 
 init()
 

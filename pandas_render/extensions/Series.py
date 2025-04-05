@@ -1,5 +1,5 @@
-from typing import Union
 from inspect import cleandoc
+from typing import Union
 
 import pandas as pd
 from IPython.display import HTML

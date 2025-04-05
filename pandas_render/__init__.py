@@ -1,10 +1,10 @@
-from typing import Optional, Union, List, Tuple
 from collections import namedtuple
 from inspect import cleandoc
+from typing import List, Optional, Tuple, Union
 
+import pandas  # noqa
 from IPython.display import Javascript  # noqa
 from jinja2 import Template as JinjaTemplate
-import pandas  # noqa
 
 
 def _handle_extensions():
