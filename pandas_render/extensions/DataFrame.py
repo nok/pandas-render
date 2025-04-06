@@ -1,5 +1,5 @@
 from inspect import cleandoc
-from typing import Dict, Union
+from typing import Dict, List, Optional, Union
 
 import pandas as pd
 from IPython.display import HTML
@@ -13,10 +13,16 @@ def render_dataframe(
     self: pd.DataFrame,
     templates: Dict[str, Union[str, Element, Component]],
     filter_columns: bool = False,
+    custom_columns_names: Optional[List[str]] = None,
     with_thead: bool = True,
     return_str: bool = False,
 ) -> Union[str, HTML]:
     visible_columns = list(templates.keys()) if filter_columns else list(self.columns)
+
+    if custom_columns_names and len(custom_columns_names) == len(visible_columns):
+        column_names = custom_columns_names
+    else:
+        column_names = visible_columns
 
     # Load templates:
     jinja_templates = {}
@@ -45,8 +51,8 @@ def render_dataframe(
         {%- if with_thead -%}
         <thead>
             <tr>
-            {%- for column in columns -%}
-                <th>{{ column }}</th>
+            {%- for column_name in column_names -%}
+                <th>{{ column_name }}</th>
             {%- endfor -%}
             </tr>
         </thead>
@@ -66,6 +72,7 @@ def render_dataframe(
     output = JinjaTemplate(template).render(
         dict(
             columns=visible_columns,
+            column_names=column_names,
             rows=rendered_rows,
             with_thead=with_thead,
         )

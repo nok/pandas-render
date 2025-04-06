@@ -110,11 +110,9 @@ title_template = """
 
 actors_template = """
 {% if content %}
-<ol>
     {% for actor in content %}
-        <li>{{ actor }}</li>
+        <p>{{ actor }}</p>
     {% endfor %}
-</ol>
 {% else %}
     <p>No actors</p>
 {% endif %}
@@ -127,4 +125,5 @@ df.render(
         actors=actors_template,
     ),
     filter_columns=True,
+    custom_columns_names=["Image", "Title", "Actors"],
 )
