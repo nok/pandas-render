@@ -25,6 +25,7 @@ Issues = "https://github.com/nok/pandas-render/issues"
 
 [dependency-groups]
 dev = [
+    "jupytext>=1.17.0",
     "pytest>=8.3.5",
     "pytest-cov>=6.0.0",
     "pytest-sugar>=1.0.0",

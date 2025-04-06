@@ -16,3 +16,6 @@ serve:
 
 build:
 	uvx hatch build
+
+generate:
+	./examples/make_examples.sh
