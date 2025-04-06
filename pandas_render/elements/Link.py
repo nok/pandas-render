@@ -11,5 +11,12 @@ class Link(Element):
     ):
         if not attribs:
             attribs = {}
-        attribs.update(dict(href="{{ content }}"))
-        super().__init__(tag="a", attribs=attribs, text=text)
+        if "href" not in attribs:
+            attribs["href"] = "{{ content }}"
+        if "target" not in attribs:
+            attribs["target"] = "_blank"
+        super().__init__(
+            tag="a",
+            attribs=attribs,
+            text=text,
+        )

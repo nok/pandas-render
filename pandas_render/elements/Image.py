@@ -10,5 +10,11 @@ class Image(Element):
     ):
         if not attribs:
             attribs = {}
-        attribs.update(dict(alt="{{ content }}", src="{{ content }}"))
-        super().__init__(tag="img", attribs=attribs)
+        if "src" not in attribs:
+            attribs["src"] = "{{ content }}"
+        if "loading" not in attribs:
+            attribs["loading"] = "lazy"
+        super().__init__(
+            tag="img",
+            attribs=attribs,
+        )

@@ -6,7 +6,6 @@ def test_element_image():
 
     assert template.startswith("<img")
     assert template.endswith("/>")
-    assert 'alt="{{ content }}"' in template
     assert 'src="{{ content }}"' in template
 
     template = Image(
