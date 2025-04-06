@@ -1,27 +1,21 @@
 from collections import namedtuple
 from inspect import cleandoc
-from typing import List, Optional, Tuple, Union
+from typing import List, Tuple, Union
 
-import pandas  # noqa
-from IPython.display import Javascript  # noqa
+import pandas
+from IPython.display import Javascript
 from jinja2 import Template as JinjaTemplate
 
 
-def _handle_extensions():
-    if not hasattr(pandas.Series, "render"):
-        from pandas_render.extensions.Series import render_series
-
-        setattr(pandas.Series, "render", render_series)
-
-    if not hasattr(pandas.DataFrame, "render"):
-        from pandas_render.extensions.DataFrame import render_dataframe
-
-        setattr(pandas.DataFrame, "render", render_dataframe)
-
-
-def _handle_libraries(
-    libraries: Union[str, Tuple[str, str], List[Union[str, Tuple[str, str]]]],
-) -> str:
+def load(
+    libraries: Union[
+        str,
+        Tuple[str, str],
+        List[Union[str, Tuple[str, str]]],
+    ],
+    return_str: bool = False,
+):
+    """Load external JavaScript libraries synchronously."""
     if isinstance(libraries, (str, tuple)):
         libraries = [libraries]
 
@@ -64,24 +58,31 @@ def _handle_libraries(
     output = ""
     if len(valid_libraries) > 0:
         output = template.render(libraries=valid_libraries)
-    return output
+
+    if return_str:
+        return output
+
+    return Javascript(output)
 
 
-def init(
-    libraries: Optional[
-        Union[str, Tuple[str, str], List[Union[str, Tuple[str, str]]]]
-    ] = None,
-    return_str: bool = False,
-) -> Optional[Union[str, Javascript]]:
-    _handle_extensions()
-    if libraries:
-        output = _handle_libraries(libraries)
-        if return_str:
-            return output
-        return Javascript(output)
-    return None
+def init():
+    """Initialize the pandas_render package."""
+
+    # Extend pandas.Series with `render` method:
+    if not hasattr(pandas.Series, "render"):
+        from pandas_render.extensions.Series import render_series
+
+        setattr(pandas.Series, "render", render_series)
+
+    # Extend pandas.DataFrame with `render` method:
+    if not hasattr(pandas.DataFrame, "render"):
+        from pandas_render.extensions.DataFrame import render_dataframe
+
+        setattr(pandas.DataFrame, "render", render_dataframe)
+
+    return pandas
 
 
-init()  # default initialization without any additional libraries
+init()
 
 __version__ = "0.2.1"
