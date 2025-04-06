@@ -73,7 +73,7 @@ df.head()
 
 # %%
 df.render(
-    columns=dict(
+    templates=dict(
         title="{{ content|upper }}",
         id='<a href="https://www.imdb.com/title/{{ content }}" target="_blank">Link</a>',
         image_url='<img src="{{ content }}" width="100"/>',
@@ -88,7 +88,7 @@ df.render(
 
 # %%
 df.render(
-    columns=dict(
+    templates=dict(
         image_url='<img src="{{ content }}" width="100"/>',
         title="{{ content|upper }}",
     ),
@@ -121,7 +121,7 @@ actors_template = """
 """
 
 df.render(
-    columns=dict(
+    templates=dict(
         image_url='<img src="{{ content }}" width="100"/>',
         title=title_template,
         actors=actors_template,

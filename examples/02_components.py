@@ -73,7 +73,7 @@ actors_template = """
 """
 
 df.render(
-    columns=dict(
+    templates=dict(
         image_url='<img src="{{ content }}" width="100"/>',
         title=title_template,
         actors=actors_template,
@@ -94,7 +94,7 @@ load(libraries="alpinejs")
 from pandas_render.components import Toggle
 
 df.render(
-    columns=dict(
+    templates=dict(
         image_url='<img src="{{ content }}" width="100"/>',
         title=title_template,
         actors=Toggle(actors_template),

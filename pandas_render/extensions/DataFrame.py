@@ -11,16 +11,16 @@ from pandas_render.extensions import render
 
 def render_dataframe(
     self: pd.DataFrame,
-    columns: Dict[str, Union[str, Element, Component]],
+    templates: Dict[str, Union[str, Element, Component]],
     filter_columns: bool = False,
     with_thead: bool = True,
     return_str: bool = False,
 ) -> Union[str, HTML]:
-    visible_columns = list(columns.keys()) if filter_columns else list(self.columns)
+    visible_columns = list(templates.keys()) if filter_columns else list(self.columns)
 
     # Load templates:
     jinja_templates = {}
-    for column, template in columns.items():
+    for column, template in templates.items():
         if column in list(self.columns):
             jinja_templates[column] = JinjaTemplate(render(template))
 
