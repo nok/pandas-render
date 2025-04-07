@@ -9,7 +9,7 @@
 # pip install pandas-render
 # ```
 #
-# ## Basics
+# ## Getting Started
 #
 # This example shows how to use pandas-render to create a simple HTML table from a pandas DataFrame. It demonstrates how to use Jinja2 templates to format the content of each cell, and how to create links and images in the table.
 #
