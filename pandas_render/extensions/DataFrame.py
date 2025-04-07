@@ -7,6 +7,7 @@ from jinja2 import Template as JinjaTemplate
 
 from pandas_render.base import Component, Element
 from pandas_render.extensions import render
+from pandas_render.utils import _chunk
 
 
 def render_dataframe(
@@ -15,6 +16,7 @@ def render_dataframe(
     filter_columns: bool = False,
     custom_columns_names: Optional[List[str]] = None,
     with_thead: bool = True,
+    n: Optional[int] = None,
     return_str: bool = False,
 ) -> Union[str, HTML]:
     # Determine relevant columns:
@@ -53,28 +55,52 @@ def render_dataframe(
                     rendered_row[column] = row.get(column)
         rendered_rows.append(rendered_row)
 
-    template = cleandoc("""
-    <table class="dataframe" border="1">
-        {%- if with_thead -%}
-        <thead>
+    if (
+        n is not None
+        and isinstance(n, int)
+        and len(visible_columns) == 1
+        and visible_columns[0] in rendered_rows[0].keys()
+    ):
+        # Render content as gallery:
+        visible_column = visible_columns[0]
+        cells = [row[visible_column] for row in rendered_rows]
+        rendered_rows = list(_chunk(cells, n=max(1, n)))
+
+        template = cleandoc("""
+        <table>
+            {%- for row in rows -%}
             <tr>
-            {%- for column_name in column_names -%}
-                <th>{{ column_name }}</th>
-            {%- endfor -%}
+                {%- for cell in row -%}
+                <td>{{ cell }}</td>
+                {%- endfor -%}
             </tr>
-        </thead>
-        {%- endif -%}
-        <tbody>
-        {%- for row in rows -%}
-            <tr>
-            {%- for column in columns -%}
-                <td>{{ row[column] }}</td>
             {%- endfor -%}
-            </tr>
-        {%- endfor -%}
-        </tbody>
-    </table>
-    """)
+        </table>
+        """)
+    else:
+        # Render content as table:
+        template = cleandoc("""
+        <table class="dataframe" border="1">
+            {%- if with_thead -%}
+            <thead>
+                <tr>
+                {%- for column_name in column_names -%}
+                    <th>{{ column_name }}</th>
+                {%- endfor -%}
+                </tr>
+            </thead>
+            {%- endif -%}
+            <tbody>
+            {%- for row in rows -%}
+                <tr>
+                {%- for column in columns -%}
+                    <td>{{ row[column] }}</td>
+                {%- endfor -%}
+                </tr>
+            {%- endfor -%}
+            </tbody>
+        </table>
+        """)
 
     output = JinjaTemplate(template).render(
         dict(

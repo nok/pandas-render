@@ -127,3 +127,22 @@ df.render(
     filter_columns=True,
     custom_columns_names=["Image", "Title", "Actors"],
 )
+
+# %% [markdown]
+# ### Gallery
+# If you have just one column to render, you can use the parameter `n` to specify the number of cells to render in each row side by side. This is useful for creating an overview of images or other content. The table head will be hidden automatically.
+
+# %%
+df.render(
+    templates=dict(
+        image_url="""
+            <div style="text-align: center;">
+                <img src="{{ content }}" width="100"/>
+                <p><a href="https://www.imdb.com/title/{{ id }}" target="_blank">{{ title|upper }}</a></p>
+                <p><smaller><strong>{{ rating }} ★</strong></smaller></p>
+            </div>
+        """,
+    ),
+    filter_columns=True,
+    n=2,
+)

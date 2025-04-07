@@ -7,11 +7,7 @@ from jinja2 import Template as JinjaTemplate
 
 from pandas_render.base.Element import Element
 from pandas_render.extensions import render
-
-
-def _chunk(sequence, n: int):
-    for i in range(0, len(sequence), n):
-        yield sequence[i : i + n]
+from pandas_render.utils import _chunk
 
 
 def render_series(
