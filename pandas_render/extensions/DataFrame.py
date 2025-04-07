@@ -17,8 +17,15 @@ def render_dataframe(
     with_thead: bool = True,
     return_str: bool = False,
 ) -> Union[str, HTML]:
-    visible_columns = list(templates.keys()) if filter_columns else list(self.columns)
+    # Determine relevant columns:
+    if filter_columns:
+        visible_columns = list(templates.keys())
+    else:
+        visible_columns = [col for col in templates.keys() if col in self.columns] + [
+            col for col in self.columns if col not in templates.keys()
+        ]
 
+    # Overwrite column names if custom names are provided:
     if custom_columns_names and len(custom_columns_names) == len(visible_columns):
         column_names = custom_columns_names
     else:
