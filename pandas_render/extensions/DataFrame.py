@@ -14,24 +14,23 @@ def render_dataframe(
     self: pd.DataFrame,
     templates: Dict[str, Union[str, Element, Component]],
     filter_columns: bool = False,
-    custom_columns_names: Optional[List[str]] = None,
-    with_thead: bool = True,
+    table_with_thead: bool = True,
+    table_column_names: Optional[List[str]] = None,
+    table_css_classes: Optional[List[str]] = ["dataframe"],
     n: Optional[int] = None,
     return_str: bool = False,
 ) -> Union[str, HTML]:
     # Determine relevant columns:
     if filter_columns:
-        visible_columns = list(templates.keys())
+        column_names = list(templates.keys())
     else:
-        visible_columns = [col for col in templates.keys() if col in self.columns] + [
+        column_names = [col for col in templates.keys() if col in self.columns] + [
             col for col in self.columns if col not in templates.keys()
         ]
 
     # Overwrite column names if custom names are provided:
-    if custom_columns_names and len(custom_columns_names) == len(visible_columns):
-        column_names = custom_columns_names
-    else:
-        column_names = visible_columns
+    if table_column_names is None or len(table_column_names) != len(column_names):
+        table_column_names = column_names
 
     # Load templates:
     jinja_templates = {}
@@ -44,7 +43,7 @@ def render_dataframe(
     for row in self.to_dict(orient="records"):
         rendered_row = {}
         for column in row.keys():
-            if column in visible_columns:
+            if column in column_names:
                 if column in jinja_templates.keys():
                     values = {"content": row[column]}
                     values.update(row)
@@ -58,16 +57,16 @@ def render_dataframe(
     if (
         n is not None
         and isinstance(n, int)
-        and len(visible_columns) == 1
-        and visible_columns[0] in rendered_rows[0].keys()
+        and len(column_names) == 1
+        and column_names[0] in rendered_rows[0].keys()
     ):
         # Render content as gallery:
-        visible_column = visible_columns[0]
-        cells = [row[visible_column] for row in rendered_rows]
+        column_name = column_names[0]
+        cells = [row[column_name] for row in rendered_rows]
         rendered_rows = list(_chunk(cells, n=max(1, n)))
 
         template = cleandoc("""
-        <table>
+        <table {% if table_css_classes %}class="{{ table_css_classes|join(' ') }}"{% endif %}>
             {%- for row in rows -%}
             <tr>
                 {%- for cell in row -%}
@@ -80,8 +79,8 @@ def render_dataframe(
     else:
         # Render content as table:
         template = cleandoc("""
-        <table class="dataframe" border="1">
-            {%- if with_thead -%}
+        <table {% if table_css_classes %}class="{{ table_css_classes|join(' ') }}"{% endif %}>
+            {%- if table_with_thead -%}
             <thead>
                 <tr>
                 {%- for column_name in column_names -%}
@@ -104,10 +103,11 @@ def render_dataframe(
 
     output = JinjaTemplate(template).render(
         dict(
-            columns=visible_columns,
-            column_names=column_names,
+            columns=column_names,
+            column_names=table_column_names,
             rows=rendered_rows,
-            with_thead=with_thead,
+            table_with_thead=table_with_thead,
+            table_css_classes=table_css_classes,
         )
     )
 

@@ -1,5 +1,5 @@
 from inspect import cleandoc
-from typing import Union
+from typing import List, Optional, Union
 
 import pandas as pd
 from IPython.display import HTML
@@ -13,6 +13,7 @@ from pandas_render.utils import _chunk
 def render_series(
     self: pd.Series,
     template: Union[str, Element],
+    table_css_classes: Optional[List[str]] = ["dataframe"],
     n: int = 1,
     return_str: bool = False,
 ) -> Union[str, HTML]:
@@ -22,7 +23,7 @@ def render_series(
     rows = list(_chunk(cells, n=max(1, n)))
 
     template = cleandoc("""
-    <table>
+    <table {% if table_css_classes %}class="{{ table_css_classes|join(' ') }}"{% endif %}>
         {%- for row in rows -%}
         <tr>
             {%- for cell in row -%}
@@ -33,7 +34,12 @@ def render_series(
     </table>
     """)
 
-    output = JinjaTemplate(template).render(dict(rows=rows))
+    output = JinjaTemplate(template).render(
+        dict(
+            rows=rows,
+            table_css_classes=table_css_classes,
+        )
+    )
 
     if return_str:
         return output

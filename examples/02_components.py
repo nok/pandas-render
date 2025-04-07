@@ -79,7 +79,7 @@ df.render(
         actors=actors_template,
     ),
     filter_columns=True,
-    custom_columns_names=["Image", "Title", "Actors"],
+    table_column_names=["Image", "Title", "Actors"],
 )
 
 # %% [markdown]
@@ -101,5 +101,5 @@ df.render(
         actors=Toggle(actors_template),
     ),
     filter_columns=True,
-    custom_columns_names=["Image", "Title", "Actors"],
+    table_column_names=["Image", "Title", "Actors"],
 )
