@@ -1,10 +1,7 @@
-import pandas as pd
 import pytest
 from IPython.display import HTML
 
-from pandas_render import init
-
-init()
+from pandas_render import pandas as pd
 
 
 @pytest.fixture

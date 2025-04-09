@@ -1,9 +1,5 @@
 def test_implicit_initialization():
-    import pandas as pd
-
-    from pandas_render import init
-
-    init()
+    from pandas_render import pandas as pd
 
     assert hasattr(pd.Series, "render")
     assert hasattr(pd.DataFrame, "render")
