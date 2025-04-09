@@ -1,7 +1,8 @@
-from inspect import cleandoc
+from __future__ import annotations
+
+from inspect import cleandoc, signature
 from typing import Dict, List, Optional, Union
 
-import pandas as pd
 from IPython.display import HTML
 from jinja2 import Template as JinjaTemplate
 
@@ -9,9 +10,19 @@ from pandas_render.base import Component, Element
 from pandas_render.extensions import render
 from pandas_render.utils import _chunk
 
+try:
+    import pandas as pd
+except ImportError:
+    pass
+
+try:
+    import polars as pl
+except ImportError:
+    pass
+
 
 def render_dataframe(
-    self: pd.DataFrame,
+    self: Union["pd.DataFrame", "pl.DataFrame"],
     templates: Dict[str, Union[str, Element, Component]],
     filter_columns: bool = False,
     table_with_thead: bool = True,
@@ -38,9 +49,22 @@ def render_dataframe(
         if column in list(self.columns):
             jinja_templates[column] = JinjaTemplate(render(template))
 
+    # Convert data:
+    if hasattr(self, "to_dict"):
+        sig = signature(self.to_dict)
+        if "orient" in sig.parameters:
+            rows = self.to_dict(orient="records")
+        elif "as_series" in sig.parameters:
+            rows = self.to_dict(as_series=False)
+            rows = [dict(zip(rows, record)) for record in zip(*rows.values())]
+        else:
+            raise ValueError("Unsupported to_dict signature.")
+    else:
+        raise ValueError("Unsupported DataFrame type.")
+
     # Render data:
     rendered_rows = []
-    for row in self.to_dict(orient="records"):
+    for row in rows:
         rendered_row = {}
         for column in row.keys():
             if column in column_names:

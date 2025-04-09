@@ -9,7 +9,7 @@ test:
 	uv run pytest --cov --cov-report term --cov-report html -n auto tests
 
 setup::
-	uv sync --all-groups
+	uv sync --all-groups --all-extras
 
 serve:
 	uv run --with jupyter jupyter lab

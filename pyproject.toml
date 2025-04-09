@@ -10,7 +10,6 @@ requires-python = ">=3.9"
 dependencies = [
     "ipython>=7.11.1",
     "jinja2>=3.0.0",
-    "pandas>=1.0.0",
 ]
 license = "BSD-3-Clause"
 classifiers = [
@@ -23,6 +22,17 @@ classifiers = [
 Repository = "https://github.com/nok/pandas-render"
 Issues = "https://github.com/nok/pandas-render/issues"
 
+[project.optional-dependencies]
+pandas = [
+    "pandas>=1.0.0",
+]
+polars = [
+    "polars>=1.0.0",
+]
+examples = [
+    "jupyterlab>=4.3.6",
+]
+
 [dependency-groups]
 dev = [
     "jupytext>=1.17.0",
@@ -30,9 +40,6 @@ dev = [
     "pytest-cov>=6.0.0",
     "pytest-sugar>=1.0.0",
     "pytest-xdist>=3.6.1",
-]
-examples = [
-    "jupyterlab>=4.3.6",
 ]
 
 [tool.coverage.run]

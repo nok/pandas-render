@@ -1,12 +1,16 @@
 # pandas-render
 
-[pandas-render](https://github.com/nok/pandas-render) is a [pandas](https://github.com/pandas-dev/pandas) extension for rendering DataFrames and Series as HTML tables, with support for custom styling and formatting.
+[pandas-render](https://github.com/nok/pandas-render) is a [pandas](https://github.com/pandas-dev/pandas) and [polars](https://github.com/pola-rs/polars) extension for rendering DataFrames and Series as HTML tables, with support for custom styling and formatting.
 
 
 ## Installation
 
 ```bash
-pip install pandas-render
+pip install pandas-render[pandas]
+```
+
+```bash
+pip install pandas-render[polars]
 ```
 
 
