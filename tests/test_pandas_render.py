@@ -12,7 +12,7 @@ def test_implicit_initialization():
 def test_initialization_with_library():
     from IPython.display import Javascript
 
-    from pandas_render import load
+    from pandas_render.utils import load
 
     output = load("alpinejs")
     assert isinstance(output, Javascript)

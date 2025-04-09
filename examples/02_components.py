@@ -87,7 +87,7 @@ df.render(
 # The `Toggle` component is a simple toggle switch that can be used to show or hide content. It can be used to create interactive elements in your HTML table. First of all we need to load the `alpinejs` library. This is a JavaScript library that provides the functionality for the toggle component. The `load` function loads the library and makes it available for use in the HTML table.
 
 # %%
-from pandas_render import load
+from pandas_render.utils import load
 
 load(libraries="alpinejs")
 
