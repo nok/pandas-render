@@ -35,7 +35,7 @@ jobs:
           cache-dependency-glob: "uv.lock"
       
       - run: |-
-          uv sync --dev
+          uv sync --dev --all-groups --all-extras
           uv tool install hatchling
 
       - run: uvx hatch build
