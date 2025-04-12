@@ -1,6 +1,17 @@
-# pandas-render
+<p align="center">
+  <img src="/assets/pandas-render.png" alt="pandas-render" height=150>
+</p>
 
-[pandas-render](https://github.com/nok/pandas-render) is a [pandas](https://github.com/pandas-dev/pandas) and [polars](https://github.com/pola-rs/polars) extension for rendering DataFrames and Series as HTML tables, with support for custom styling and formatting.
+<h1 align="center">pandas-render</h1>
+
+<p align="center">Render <a href="https://github.com/pandas-dev/pandas" target="_pandas">pandas</a> or <a href="https://github.com/pola-rs/polars" target="_pandas">polars</a> DataFrames and Series as HTML tables with flexibility for formatting and styling.</p>
+
+<div align="center">
+
+![GitHub Repo stars](https://img.shields.io/github/stars/nok/pandas-render)
+![PyPI - License](https://img.shields.io/pypi/l/pandas-render)
+
+</div>
 
 
 ## Installation
