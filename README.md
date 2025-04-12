@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/assets/pandas-render.png" alt="pandas-render" height=150>
+  <img src="/assets/pandas-render.png" alt="pandas-render" height=130>
 </p>
 
 <h1 align="center">pandas-render</h1>
