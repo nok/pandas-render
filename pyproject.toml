@@ -10,6 +10,7 @@ requires-python = ">=3.9"
 dependencies = [
     "ipython>=7.11.1",
     "jinja2>=3.0.0",
+    "typer>=0.15.2",
 ]
 license = "BSD-3-Clause"
 classifiers = [
@@ -41,6 +42,9 @@ dev = [
     "pytest-sugar>=1.0.0",
     "pytest-xdist>=3.6.1",
 ]
+
+[project.scripts]
+pandas = "pandas_render.cli.__main__:app"
 
 [tool.coverage.run]
 source = ["pandas_render"]
