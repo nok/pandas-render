@@ -32,7 +32,9 @@ jobs:
           cache-dependency-glob: "uv.lock"
       
       - name: Install dependencies
-        run: uv sync --dev --all-groups --all-extras
+        run: |
+          uv sync --dev --all-groups --all-extras
+          uv tool install ruff
       
       - name: Run tests
         run: |
@@ -41,3 +43,7 @@ jobs:
             --cov-report term \
             -n auto \
               tests
+      
+      - name: Run linting
+        run: |
+          uvx ruff check .
