@@ -4,12 +4,13 @@
 
 <h1 align="center">pandas-render</h1>
 
-<p align="center">Render <a href="https://github.com/pandas-dev/pandas" target="_pandas">pandas</a> or <a href="https://github.com/pola-rs/polars" target="_pandas">polars</a> DataFrames and Series as HTML tables with flexibility for formatting and styling.</p>
+<p align="center">Render <a href="https://github.com/pandas-dev/pandas" target="_pandas">pandas</a> or <a href="https://github.com/pola-rs/polars" target="_polars">polars</a> DataFrames and Series as HTML tables with flexibility for formatting and styling.</p>
 
 <div align="center">
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/nok/pandas-render)
-![PyPI - License](https://img.shields.io/pypi/l/pandas-render)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/nok)
+[![GitHub License](https://img.shields.io/github/license/nok/sklearn-porter)](LICENSE)
 
 </div>
 
