@@ -18,11 +18,11 @@
 ## Installation
 
 ```bash
-pip install pandas-render[pandas]
+pip install "pandas-render[pandas]"
 ```
 
 ```bash
-pip install pandas-render[polars]
+pip install "pandas-render[polars]"
 ```
 
 
