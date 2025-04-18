@@ -1,14 +1,6 @@
 # %% [markdown]
 # # pandas-render
 #
-# [pandas-render](https://github.com/nok/pandas-render) is a [pandas](https://github.com/pandas-dev/pandas) extension for rendering DataFrames and Series as HTML tables, with support for custom styling and formatting.
-#
-# Installation:
-#
-# ```bash
-# pip install pandas-render
-# ```
-#
 # ## Getting Started
 #
 # This example shows how to use pandas-render to create a simple HTML table from a pandas DataFrame. It demonstrates how to use Jinja2 templates to format the content of each cell, and how to create links and images in the table.
