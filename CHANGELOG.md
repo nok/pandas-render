@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.1](https://github.com/nok/pandas-render/compare/v0.3.0...v0.3.1) (2025-04-21)
+
+
+### Documentation
+
+* Add support section ([4e0cea3](https://github.com/nok/pandas-render/commit/4e0cea3c4ff6357d9245ac61ef3fbb447b081dfd))
+* Enclose installation commands in quotes ([b97c250](https://github.com/nok/pandas-render/commit/b97c2500598ef120897f56fad6b1e57efed290f3))
+* Remove installation instructions and repository links from examples ([89fc056](https://github.com/nok/pandas-render/commit/89fc0569c36036b48b6ca6096816e183876e0378))
+* Remove license badge ([f5e8483](https://github.com/nok/pandas-render/commit/f5e84835f745c8a1c447d03a655beea1293b3095))
+* Use full image url ([d14fec3](https://github.com/nok/pandas-render/commit/d14fec36c49242c3966a68bf3c657c3e9cdbfa38))
+
 ## 0.3.0 (2025-04-16)
 
 
