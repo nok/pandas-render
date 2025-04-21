@@ -64,6 +64,11 @@ List of all notebooks with examples:
 - [Components](examples/02_components.ipynb)
 
 
+## Support
+
+Do you like this project? Fuel it with a ☕ coffee on [Ko-fi](https://ko-fi.com/nok). Every little bit helps and means a lot!
+
+
 ## Contributing
 
 We encourage you to contribute to this project! Please check out the [contributing guidelines](CONTRIBUTING.md) about how to proceed.
