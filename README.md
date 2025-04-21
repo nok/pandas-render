@@ -10,7 +10,6 @@
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/nok/pandas-render)
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/nok)
-[![GitHub License](https://img.shields.io/github/license/nok/sklearn-porter)](LICENSE)
 
 </div>
 
