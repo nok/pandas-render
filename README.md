@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/assets/pandas-render.png" alt="pandas-render" height=130>
+  <img src="https://raw.githubusercontent.com/nok/pandas-render/refs/heads/main/assets/pandas-render.png" alt="pandas-render" height=130>
 </p>
 
 <h1 align="center">pandas-render</h1>
@@ -10,7 +10,6 @@
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/nok/pandas-render)
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/nok)
-[![GitHub License](https://img.shields.io/github/license/nok/sklearn-porter)](LICENSE)
 
 </div>
 
@@ -18,11 +17,11 @@
 ## Installation
 
 ```bash
-pip install pandas-render[pandas]
+pip install "pandas-render[pandas]"
 ```
 
 ```bash
-pip install pandas-render[polars]
+pip install "pandas-render[polars]"
 ```
 
 
@@ -63,6 +62,11 @@ List of all notebooks with examples:
 
 - [Getting Started](examples/01_getting_started.ipynb) ✨
 - [Components](examples/02_components.ipynb)
+
+
+## Support
+
+Do you like this project? Fuel it with a ☕ coffee on [Ko-fi](https://ko-fi.com/nok). Every little bit helps and means a lot!
 
 
 ## Contributing
