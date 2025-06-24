@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/nok/pandas-render/compare/v0.3.1...v0.4.0) (2025-05-18)
+
+
+### Features
+
+* Add type hinting support with py.typed file ([92058e4](https://github.com/nok/pandas-render/commit/92058e4a256ec965fea5be2979710ffd10b81f81))
+
 ## [0.3.1](https://github.com/nok/pandas-render/compare/v0.3.0...v0.3.1) (2025-04-21)
 
 
