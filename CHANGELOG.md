@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.1](https://github.com/nok/pandas-render/compare/v0.4.0...v0.4.1) (2026-08-24)
+
+
+### Bug Fixes
+
+* **deps:** remove unsupported python version ([ccc2823](https://github.com/nok/pandas-render/commit/ccc2823fe7206b8aea83a993ba987d665df39f69))
+* **deps:** update deps ([39eb8ab](https://github.com/nok/pandas-render/commit/39eb8abb26e677e79e2cd161db0e3f3e76084e23))
+* **lint:** ignore module description ([0e63fa3](https://github.com/nok/pandas-render/commit/0e63fa317ece3dff8786e8880c1a96a94839f5f2))
+* **lint:** remove old typing syntax ([8865e4a](https://github.com/nok/pandas-render/commit/8865e4a3728274516badaf62863a8d295c1fdf88))
+
 ## [0.4.0](https://github.com/nok/pandas-render/compare/v0.3.1...v0.4.0) (2025-05-18)
 
 
