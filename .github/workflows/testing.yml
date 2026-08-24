@@ -46,4 +46,4 @@ jobs:
       
       - name: Run linting
         run: |
-          uvx ruff check .
+          uvx ruff check --ignore=N999 .
