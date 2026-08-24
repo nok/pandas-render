@@ -1,12 +1,10 @@
-from typing import Dict, Optional
-
 from pandas_render.base import Element
 
 
 class Image(Element):
     def __init__(
         self,
-        attribs: Optional[Dict[str, str]] = None,
+        attribs: dict[str, str] | None = None,
     ):
         if not attribs:
             attribs = {}

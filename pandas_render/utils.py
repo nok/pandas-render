@@ -1,17 +1,12 @@
 from collections import namedtuple
 from inspect import cleandoc
-from typing import List, Tuple, Union
 
 from IPython.display import Javascript
 from jinja2 import Template as JinjaTemplate
 
 
 def load(
-    libraries: Union[
-        str,
-        Tuple[str, str],
-        List[Union[str, Tuple[str, str]]],
-    ],
+    libraries: str | tuple[str, str] | list[str | tuple[str, str]],
     return_str: bool = False,
 ):
     """Load external JavaScript libraries synchronously."""
@@ -19,7 +14,7 @@ def load(
         libraries = [libraries]
 
     Library = namedtuple("Library", "name src")
-    valid_libraries: List[Library] = []
+    valid_libraries: list[Library] = []
 
     for library in libraries:
         if isinstance(library, str):

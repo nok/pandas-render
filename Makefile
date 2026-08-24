@@ -3,7 +3,7 @@ SHELL := /bin/bash
 export PYTHONPATH=$(shell pwd)
 
 lint:
-	uvx ruff check .
+	uvx ruff check --ignore=N999 .
 
 test:
 	uv run pytest --cov --cov-report term --cov-report html -n auto tests

@@ -1,13 +1,11 @@
-from typing import Dict, Optional
-
 from pandas_render.base import Element
 
 
 class Link(Element):
     def __init__(
         self,
-        attribs: Optional[Dict[str, str]] = None,
-        text: Optional[str] = "{{ content }}",
+        attribs: dict[str, str] | None = None,
+        text: str | None = "{{ content }}",
     ):
         if not attribs:
             attribs = {}

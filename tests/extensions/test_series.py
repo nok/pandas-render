@@ -8,9 +8,9 @@ from pandas_render import pandas as pd
 def df() -> pd.DataFrame:
     return pd.DataFrame(
         [
-            dict(name="Anna", age=20),
-            dict(name="Bob", age=30),
-            dict(name="Christian", age=40),
+            {"name": "Anna", "age": 20},
+            {"name": "Bob", "age": 30},
+            {"name": "Christian", "age": 40},
         ]
     )
 

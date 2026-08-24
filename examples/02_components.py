@@ -16,30 +16,30 @@ from pandas_render import pandas as pd
 # %%
 df = pd.DataFrame(
     [
-        dict(
-            title="Severance",
-            id="tt11280740",
-            year=2022,
-            image_url="https://m.media-amazon.com/images/M/MV5BZDI5YzJhODQtMzQyNy00YWNmLWIxMjUtNDBjNjA5YWRjMzExXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
-            rating=8.7,
-            actors=["Adam Scott", "Britt Lower", "Zach Cherry"],
-        ),
-        dict(
-            title="Stranger Things",
-            id="tt4574334",
-            year=2016,
-            image_url="https://m.media-amazon.com/images/M/MV5BMjg2NmM0MTEtYWY2Yy00NmFlLTllNTMtMjVkZjEwMGVlNzdjXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
-            rating=8.6,
-            actors=["Millie Bobby Brown", "Finn Wolfhard"],
-        ),
-        dict(
-            title="Python",
-            id="tt0209264",
-            year=2000,
-            image_url="https://m.media-amazon.com/images/M/MV5BZWUwNjExYTYtZmM3ZS00NzA1LWJhNjYtMWExNGEwZTVjNDM3XkEyXkFqcGc@._V1_QL75_UY562_CR8,0,380,562_.jpg",
-            rating=3.7,
-            actors=["Frayne Rosanoff"],
-        ),
+        {
+            "title": "Severance",
+            "id": "tt11280740",
+            "year": 2022,
+            "image_url": "https://m.media-amazon.com/images/M/MV5BZDI5YzJhODQtMzQyNy00YWNmLWIxMjUtNDBjNjA5YWRjMzExXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+            "rating": 8.7,
+            "actors": ["Adam Scott", "Britt Lower", "Zach Cherry"],
+        },
+        {
+            "title": "Stranger Things",
+            "id": "tt4574334",
+            "year": 2016,
+            "image_url": "https://m.media-amazon.com/images/M/MV5BMjg2NmM0MTEtYWY2Yy00NmFlLTllNTMtMjVkZjEwMGVlNzdjXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+            "rating": 8.6,
+            "actors": ["Millie Bobby Brown", "Finn Wolfhard"],
+        },
+        {
+            "title": "Python",
+            "id": "tt0209264",
+            "year": 2000,
+            "image_url": "https://m.media-amazon.com/images/M/MV5BZWUwNjExYTYtZmM3ZS00NzA1LWJhNjYtMWExNGEwZTVjNDM3XkEyXkFqcGc@._V1_QL75_UY562_CR8,0,380,562_.jpg",
+            "rating": 3.7,
+            "actors": ["Frayne Rosanoff"],
+        },
     ]
 )
 
@@ -65,11 +65,11 @@ actors_template = """
 """
 
 df.render(
-    templates=dict(
-        image_url='<img src="{{ content }}" width="100"/>',
-        title=title_template,
-        actors=actors_template,
-    ),
+    templates={
+        "image_url": '<img src="{{ content }}" width="100"/>',
+        "title": title_template,
+        "actors": actors_template,
+    },
     filter_columns=True,
     table_column_names=["Image", "Title", "Actors"],
 )
@@ -87,11 +87,11 @@ load(libraries="alpinejs")
 from pandas_render.components import Toggle
 
 df.render(
-    templates=dict(
-        image_url='<img src="{{ content }}" width="100"/>',
-        title=title_template,
-        actors=Toggle(actors_template),
-    ),
+    templates={
+        "image_url": '<img src="{{ content }}" width="100"/>',
+        "title": title_template,
+        "actors": Toggle(actors_template),
+    },
     filter_columns=True,
     table_column_names=["Image", "Title", "Actors"],
 )
