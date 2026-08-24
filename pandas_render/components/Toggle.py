@@ -23,12 +23,12 @@ class Toggle(Component):
         """)
 
         output = JinjaTemplate(template).render(
-            dict(
-                is_open="true" if is_open else "false",
-                content=content,
-                show=show,
-                hide=hide,
-            )
+            {
+                "is_open": "true" if is_open else "false",
+                "content": content,
+                "show": show,
+                "hide": hide,
+            }
         )
 
         super().__init__(template=output)

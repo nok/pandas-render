@@ -1,11 +1,9 @@
-from typing import Union
-
 from pandas_render.base import Component, Element
 from pandas_render.components import collection as components_collection
 from pandas_render.elements import collection as elements_collection
 
 
-def render(something: Union[str, Element, Component, type]) -> str:
+def render(something: str | Element | Component | type) -> str:
     if isinstance(something, str):
         clazz = elements_collection.get(something) or components_collection.get(
             something

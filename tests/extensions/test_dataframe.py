@@ -8,19 +8,19 @@ from pandas_render import pandas as pd
 def df() -> pd.DataFrame:
     return pd.DataFrame(
         [
-            dict(name="Anna", age=20),
-            dict(name="Bob", age=30),
-            dict(name="Christian", age=40),
+            {"name": "Anna", "age": 20},
+            {"name": "Bob", "age": 30},
+            {"name": "Christian", "age": 40},
         ]
     )
 
 
 def test_content(df: pd.DataFrame):
     table = df.render(
-        dict(
-            name="{{ content|upper }}",
-            foobar="{{ content }}",
-        ),
+        {
+            "name": "{{ content|upper }}",
+            "foobar": "{{ content }}",
+        },
         return_str=True,
     )
     for name in ["ANNA", "BOB", "CHRISTIAN"]:
@@ -28,18 +28,18 @@ def test_content(df: pd.DataFrame):
     assert "foobar" not in table
 
     table = df.render(
-        dict(
-            age="{{ content }}",
-        ),
+        {
+            "age": "{{ content }}",
+        },
         filter_columns=True,
         return_str=True,
     )
     assert "Anna" not in table
 
     table = df.render(
-        dict(
-            name="{{ content|upper }}",
-            age="{{ content }}",
-        )
+        {
+            "name": "{{ content|upper }}",
+            "age": "{{ content }}",
+        }
     )
     assert isinstance(table, HTML)

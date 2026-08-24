@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from inspect import cleandoc, signature
-from typing import Dict, List, Optional, Union
 
 from IPython.display import HTML
 from jinja2 import Template as JinjaTemplate
@@ -22,21 +21,23 @@ except ImportError:
 
 
 def render_dataframe(
-    self: Union["pd.DataFrame", "pl.DataFrame"],
-    templates: Dict[str, Union[str, Element, Component]],
+    self: pd.DataFrame | pl.DataFrame,
+    templates: dict[str, str | Element | Component],
     filter_columns: bool = False,
     table_with_thead: bool = True,
-    table_column_names: Optional[List[str]] = None,
-    table_css_classes: Optional[List[str]] = ["dataframe"],
-    n: Optional[int] = None,
+    table_column_names: list[str] | None = None,
+    table_css_classes: list[str] | None = None,
+    n: int | None = None,
     return_str: bool = False,
-) -> Union[str, HTML]:
+) -> str | HTML:
     # Determine relevant columns:
+    if table_css_classes is None:
+        table_css_classes = ["dataframe"]
     if filter_columns:
         column_names = list(templates.keys())
     else:
-        column_names = [col for col in templates.keys() if col in self.columns] + [
-            col for col in self.columns if col not in templates.keys()
+        column_names = [col for col in templates if col in self.columns] + [
+            col for col in self.columns if col not in templates
         ]
 
     # Overwrite column names if custom names are provided:
@@ -66,9 +67,9 @@ def render_dataframe(
     rendered_rows = []
     for row in rows:
         rendered_row = {}
-        for column in row.keys():
+        for column in row:
             if column in column_names:
-                if column in jinja_templates.keys():
+                if column in jinja_templates:
                     values = {"content": row[column]}
                     values.update(row)
                     jinja_template = jinja_templates.get(column)
@@ -82,7 +83,7 @@ def render_dataframe(
         n is not None
         and isinstance(n, int)
         and len(column_names) == 1
-        and column_names[0] in rendered_rows[0].keys()
+        and column_names[0] in rendered_rows[0]
     ):
         # Render content as gallery:
         column_name = column_names[0]
@@ -126,13 +127,13 @@ def render_dataframe(
         """)
 
     output = JinjaTemplate(template).render(
-        dict(
-            columns=column_names,
-            column_names=table_column_names,
-            rows=rendered_rows,
-            table_with_thead=table_with_thead,
-            table_css_classes=table_css_classes,
-        )
+        {
+            "columns": column_names,
+            "column_names": table_column_names,
+            "rows": rendered_rows,
+            "table_with_thead": table_with_thead,
+            "table_css_classes": table_css_classes,
+        }
     )
 
     if return_str:
