@@ -5,7 +5,6 @@
 
 ### Bug Fixes
 
-* **deps:** remove unsupported python version 3.10 ([0349a02](https://github.com/nok/pandas-render/commit/0349a026490379e6f5a7bf9247d1bc0c41dc39b1))
 * **deps:** remove unsupported python version 3.10 ([25bdef8](https://github.com/nok/pandas-render/commit/25bdef830180c9298a5e402422c470681497f90d))
 
 ## [0.4.1](https://github.com/nok/pandas-render/compare/v0.4.0...v0.4.1) (2026-08-24)
