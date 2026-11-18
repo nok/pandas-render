@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/nok/pandas-render/compare/v0.4.1...v0.4.2) (2026-11-18)
+
+
+### Bug Fixes
+
+* **deps:** remove unsupported python version 3.10 ([25bdef8](https://github.com/nok/pandas-render/commit/25bdef830180c9298a5e402422c470681497f90d))
+
 ## [0.4.1](https://github.com/nok/pandas-render/compare/v0.4.0...v0.4.1) (2026-08-24)
 
 
