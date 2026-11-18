@@ -11,10 +11,11 @@ Format: `<type>(<optional scope>): <description>`
 | `feat` | New functionality | Minor bump |
 | `fix` | Bug fixes | Patch bump |
 | `docs` | Documentation | Patch bump, listed in the changelog |
-| `refactor`, `test`, `ci`, `chore` | Changes that users don't notice | No release on their own |
+| `refactor`, `test`, `build`, `ci`, `chore` | Changes that users don't notice | No release on their own |
 
 - Mark breaking changes with `!` after the type or scope (`feat!: ...`) or a `BREAKING CHANGE:` footer. They bump the major version, so on `0.x` the next release is `1.0.0`.
-- Scopes used so far are `deps` and `lint`, for example `fix(deps): ...` or `chore(deps): ...`.
+- Scopes used so far are `deps`, `deps-dev` and `lint`, for example `fix(deps): ...` or `build(deps): ...`.
+- Dependabot (`.github/dependabot.yml`) commits Python dependency updates as `build(deps)` or `build(deps-dev)` and GitHub Actions updates as `ci`, so they don't trigger a release.
 - `chore(main): release X.Y.Z` is reserved for release-please.
 
 ## Releases
